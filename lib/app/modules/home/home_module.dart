@@ -1,4 +1,4 @@
-import 'package:easy_school_app/app/home/home_Page.dart';
+import 'package:easy_school_app/app/modules/home/home_Page.dart';
 import 'package:easy_school_app/app/modules/home/home_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
