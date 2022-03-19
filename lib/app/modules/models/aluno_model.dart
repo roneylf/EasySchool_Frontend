@@ -9,13 +9,9 @@ class Aluno {
 
   String nome;
 
-  List<Curso>? cursos = [];
+  List<Curso> cursos = [];
 
-  Aluno({
-    this.codigo,
-    required this.nome,
-     this.cursos,
-  });
+  Aluno({this.codigo, required this.nome, this.cursos = const []});
 
   Aluno copyWith({
     int? codigo,
@@ -57,11 +53,11 @@ class Aluno {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Aluno &&
-      other.codigo == codigo &&
-      other.nome == nome &&
-      listEquals(other.cursos, cursos);
+        other.codigo == codigo &&
+        other.nome == nome &&
+        listEquals(other.cursos, cursos);
   }
 
   @override

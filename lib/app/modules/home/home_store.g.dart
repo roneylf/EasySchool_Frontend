@@ -9,39 +9,25 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on _HomeStoreBase, Store {
-  final _$valueAtom = Atom(name: '_HomeStoreBase.value');
+  final _$currentPageAtom = Atom(name: '_HomeStoreBase.currentPage');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  Pages get currentPage {
+    _$currentPageAtom.reportRead();
+    return super.currentPage;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set currentPage(Pages value) {
+    _$currentPageAtom.reportWrite(value, super.currentPage, () {
+      super.currentPage = value;
     });
-  }
-
-  final _$_HomeStoreBaseActionController =
-      ActionController(name: '_HomeStoreBase');
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
-        name: '_HomeStoreBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+currentPage: ${currentPage}
     ''';
   }
 }

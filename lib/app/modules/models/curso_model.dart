@@ -13,12 +13,11 @@ class Curso {
 
   List<Aluno> alunos = [];
 
-  Curso({
-    this.codigo,
-    required this.descricao,
-    required this.ementa,
-    required this.alunos,
-  });
+  Curso(
+      {this.codigo,
+      required this.descricao,
+      required this.ementa,
+      this.alunos = const []});
 
   Curso copyWith({
     int? codigo,
@@ -64,19 +63,19 @@ class Curso {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Curso &&
-      other.codigo == codigo &&
-      other.descricao == descricao &&
-      other.ementa == ementa &&
-      listEquals(other.alunos, alunos);
+        other.codigo == codigo &&
+        other.descricao == descricao &&
+        other.ementa == ementa &&
+        listEquals(other.alunos, alunos);
   }
 
   @override
   int get hashCode {
     return codigo.hashCode ^
-      descricao.hashCode ^
-      ementa.hashCode ^
-      alunos.hashCode;
+        descricao.hashCode ^
+        ementa.hashCode ^
+        alunos.hashCode;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:easy_school_app/app/modules/components/item_aluno.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:easy_school_app/app/modules/alunos/alunos_store.dart';
@@ -26,11 +27,7 @@ class AlunosPageState extends State<AlunosPage> {
         return ListView.builder(
           itemCount: store.alunos.length,
           itemBuilder: (context, index) {
-            return ListTile(
-                title: Text(store.alunos[index].nome),
-                subtitle: Text(
-                  store.alunos[index].codigo.toString(),
-                ));
+            return ItemAluno(aluno: store.alunos[index]);
           },
         );
       }),

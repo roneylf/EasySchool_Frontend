@@ -1,15 +1,13 @@
+import 'package:easy_school_app/app/modules/models/aluno_model.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';
 
 class HomeStore = _HomeStoreBase with _$HomeStore;
+
 abstract class _HomeStoreBase with Store {
-
   @observable
-  int value = 0;
-
-  @action
-  void increment() {
-    value++;
-  } 
+  Pages currentPage = Pages.alunos;
 }
+
+enum Pages { alunos, cursos }
