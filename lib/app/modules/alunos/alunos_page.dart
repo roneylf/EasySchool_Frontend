@@ -1,3 +1,4 @@
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:easy_school_app/app/modules/alunos/alunos_store.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +14,26 @@ class AlunosPageState extends State<AlunosPage> {
   final AlunosStore store = Modular.get();
 
   @override
+  void initState() {
+    store.get();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: <Widget>[],
-      ),
+      body: Observer(builder: (_) {
+        return ListView.builder(
+          itemCount: store.alunos.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+                title: Text(store.alunos[index].nome),
+                subtitle: Text(
+                  store.alunos[index].codigo.toString(),
+                ));
+          },
+        );
+      }),
     );
   }
 }

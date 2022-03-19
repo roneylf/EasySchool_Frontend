@@ -9,18 +9,18 @@ part of 'alunos_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AlunosStore on _AlunosStoreBase, Store {
-  final _$valueAtom = Atom(name: '_AlunosStoreBase.value');
+  final _$alunosAtom = Atom(name: '_AlunosStoreBase.alunos');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  ObservableList<Aluno> get alunos {
+    _$alunosAtom.reportRead();
+    return super.alunos;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set alunos(ObservableList<Aluno> value) {
+    _$alunosAtom.reportWrite(value, super.alunos, () {
+      super.alunos = value;
     });
   }
 
@@ -28,11 +28,11 @@ mixin _$AlunosStore on _AlunosStoreBase, Store {
       ActionController(name: '_AlunosStoreBase');
 
   @override
-  void increment() {
+  void get() {
     final _$actionInfo = _$_AlunosStoreBaseActionController.startAction(
-        name: '_AlunosStoreBase.increment');
+        name: '_AlunosStoreBase.get');
     try {
-      return super.increment();
+      return super.get();
     } finally {
       _$_AlunosStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -41,7 +41,7 @@ mixin _$AlunosStore on _AlunosStoreBase, Store {
   @override
   String toString() {
     return '''
-value: ${value}
+alunos: ${alunos}
     ''';
   }
 }

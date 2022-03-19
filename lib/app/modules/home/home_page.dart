@@ -1,3 +1,4 @@
+import 'package:easy_school_app/app/modules/alunos/alunos_page.dart';
 import 'package:easy_school_app/app/modules/home/home_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,7 @@ class HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: <Widget>[],
-      ),
+      body: AlunosPage(),
     );
   }
 }

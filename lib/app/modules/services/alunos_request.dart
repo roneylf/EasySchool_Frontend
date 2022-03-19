@@ -20,10 +20,13 @@ class AlunosRequest extends Request {
 
   @override
   Future<List<Aluno>?> get() async {
-    dio.get(path).then((response) {
+
+    return dio.get(path).then((response) {
+      
       List<Aluno> alunos = [];
       response.data.forEach((aluno) {
-        alunos.add(Aluno.fromJson(aluno));
+        alunos.add(Aluno.fromMap(aluno));
+     
       });
       return alunos;
     }).catchError((onError) {
@@ -31,7 +34,7 @@ class AlunosRequest extends Request {
         print(onError);
       }
     });
-    return null;
+  
   }
 
   @override
