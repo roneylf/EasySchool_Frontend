@@ -29,7 +29,7 @@ class Aluno {
     return {
       'codigo': codigo,
       'nome': nome,
-      //'cursos': cursos.map((x) => x.toMap()).toList(),
+      'cursos': cursos.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -37,7 +37,7 @@ class Aluno {
     return Aluno(
       codigo: map['codigo']?.toInt(),
       nome: map['nome'] ?? '',
-      //cursos: List<Curso>.from(map['cursos']?.map((x) => Curso.fromMap(x))),
+      cursos: map['cursos'] != null ? List<Curso>.from(map['cursos']?.map((x) => Curso.fromMap(x))):[],
     );
   }
 

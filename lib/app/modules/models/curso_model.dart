@@ -47,7 +47,7 @@ class Curso {
       codigo: map['codigo']?.toInt(),
       descricao: map['descricao'] ?? '',
       ementa: map['ementa'] ?? '',
-      alunos: List<Aluno>.from(map['alunos']?.map((x) => Aluno.fromMap(x))),
+      alunos: map['alunos'] != null? List<Aluno>.from(map['alunos']?.map((x) => Aluno.fromMap(x))):[],
     );
   }
 
