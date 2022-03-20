@@ -31,6 +31,12 @@ class AlunosPageState extends State<AlunosPage> {
           },
         );
       }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Modular.to.pushNamed('/alunos/add');
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }

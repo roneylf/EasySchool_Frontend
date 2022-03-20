@@ -11,5 +11,6 @@ class AlunosModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, args) => AlunosPage()),
+    
   ];
 }

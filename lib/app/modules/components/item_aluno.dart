@@ -13,23 +13,37 @@ class ItemAluno extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 60,
+        //height: 70,
+        width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), color: Colors.white10),
         child: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Código: ${aluno.codigo ?? "Não informado"}"),
-              Text("Nome: " + aluno.nome),
-              Wrap(children: [
-                for (final curso in aluno.cursos)
-                  tipCurso(
-                    curso: curso,
-                  )
-              ])
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Text("Código: ${aluno.codigo ?? "Não informado"}"),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Text("Nome:   " + aluno.nome),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Wrap(children: [
+                  if (aluno.cursos.isEmpty)
+                    tipCurso(
+                      curso: Curso(descricao: "Sem cursos", ementa: ""),
+                    ),
+                  for (final curso in aluno.cursos)
+                    tipCurso(
+                      curso: curso,
+                    )
+                ]),
+              )
             ],
           ),
         ),
@@ -46,14 +60,20 @@ class tipCurso extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 10,
-      width: 30,
+      height: 20,
+      width: curso.descricao.characters.length * 8.0,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color: Colors.white10),
-      child: Column(
-        children: [
-          Text("Nome:" + curso.descricao),
-        ],
+      color: Colors.cyan.withOpacity(0.1),
+        
+          border: Border.all(
+            color: Colors.cyan,
+            width: 1,
+          ),
+          
+          borderRadius: BorderRadius.circular(10), ),
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: Center(child: Text(curso.descricao, style: TextStyle(fontSize: 8))),
       ),
     );
   }
