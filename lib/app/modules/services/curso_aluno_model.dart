@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:easy_school_app/app/modules/models/aluno_model.dart';
-import 'package:easy_school_app/app/modules/models/curso_model.dart';
+import 'package:easy_school_app/app/modules/alunos/aluno_model.dart';
+import 'package:easy_school_app/app/modules/cursos/curso_model.dart';
 
 class CursoAluno {
   Aluno aluno;
@@ -31,6 +31,7 @@ class CursoAluno {
   }
 
   factory CursoAluno.fromMap(Map<String, dynamic> map) {
+    print(map);
     return CursoAluno(
       aluno: Aluno.fromMap(map['aluno']),
       curso: Curso.fromMap(map['curso']),

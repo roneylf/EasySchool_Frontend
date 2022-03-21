@@ -1,4 +1,4 @@
-import 'package:easy_school_app/app/modules/models/aluno_model.dart';
+import 'package:easy_school_app/app/modules/alunos/aluno_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

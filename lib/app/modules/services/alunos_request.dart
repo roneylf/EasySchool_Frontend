@@ -1,4 +1,4 @@
-import 'package:easy_school_app/app/modules/models/aluno_model.dart';
+import 'package:easy_school_app/app/modules/alunos/aluno_model.dart';
 import 'package:easy_school_app/app/modules/services/requests.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -50,15 +50,14 @@ class AlunosRequest extends Request {
   }
 
   @override
-  Future<bool> post(Map<String, dynamic> body) async {
-    await dio.post(path, data: body).then((response) {
-      return true;
+  Future<int> post(Map<String, dynamic> body) async {
+    return await dio.post(path, data: body).then((response) {
+      return response.data['codigo'];
     }).catchError((onError) {
       if (kDebugMode) {
         print(onError);
       }
     });
-    return false;
   }
 
   @override

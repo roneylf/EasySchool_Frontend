@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:easy_school_app/app/modules/models/aluno_model.dart';
+import 'package:easy_school_app/app/modules/alunos/aluno_model.dart';
 
 class Curso {
   int? codigo;

@@ -1,4 +1,5 @@
-import 'package:easy_school_app/app/modules/components/item_aluno.dart';
+import 'package:easy_school_app/app/modules/alunos/item_aluno.dart';
+import 'package:easy_school_app/app/modules/alunos/aluno_model.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:easy_school_app/app/modules/alunos/alunos_store.dart';
@@ -33,7 +34,7 @@ class AlunosPageState extends State<AlunosPage> {
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Modular.to.pushNamed('/alunos/add');
+          Modular.to.pushNamed('/alunos/detail', arguments: Aluno(nome: 'nome'));
         },
         child: Icon(Icons.add),
       ),

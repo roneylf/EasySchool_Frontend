@@ -2,17 +2,17 @@ import 'package:easy_school_app/app/modules/services/requests.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import '../models/curso_model.dart';
+import '../cursos/curso_model.dart';
 
 class CursosRequest extends Request {
   final path = dotenv.env['BASE_URL'].toString() + 'cursos';
 
   @override
   Future<List<Curso>?> get() async {
-    await dio.get(path).then((response) {
+    return dio.get(path).then((response) {
       List<Curso> cursos = [];
       response.data.forEach((curso) {
-        cursos.add(Curso.fromJson(curso));
+        cursos.add(Curso.fromMap(curso));
       });
       return cursos;
     }).catchError((onError) {
@@ -20,7 +20,7 @@ class CursosRequest extends Request {
         print(onError);
       }
     });
-    return null;
+ 
   }
 
   @override
@@ -36,15 +36,14 @@ class CursosRequest extends Request {
   }
 
   @override
-  Future<bool> post(Map<String, dynamic> body) async {
-    await dio.post(path, data: body).then((response) {
-      return true;
+  Future<int> post(Map<String, dynamic> body) async {
+   return await dio.post(path, data: body).then((response) {
+      return response.data['codigo'];
     }).catchError((onError) {
       if (kDebugMode) {
         print(onError);
       }
     });
-    return false;
   }
 
   @override

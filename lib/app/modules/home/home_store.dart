@@ -1,4 +1,4 @@
-import 'package:easy_school_app/app/modules/models/aluno_model.dart';
+import 'package:easy_school_app/app/modules/alunos/aluno_model.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';

@@ -1,5 +1,5 @@
 import 'package:easy_school_app/app/modules/alunos/alunos_page.dart';
-import 'package:easy_school_app/app/modules/components/navbar.dart';
+import 'package:easy_school_app/app/modules/home/navbar.dart';
 import 'package:easy_school_app/app/modules/cursos/cursos_page.dart';
 import 'package:easy_school_app/app/modules/home/home_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
