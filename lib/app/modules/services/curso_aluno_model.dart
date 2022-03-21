@@ -24,10 +24,7 @@ class CursoAluno {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      'aluno': aluno.toMap(),
-      'curso': curso.toMap(),
-    };
+    return {'codigo_aluno': aluno.codigo, 'codigo_curso': curso.codigo};
   }
 
   factory CursoAluno.fromMap(Map<String, dynamic> map) {
@@ -40,7 +37,8 @@ class CursoAluno {
 
   String toJson() => json.encode(toMap());
 
-  factory CursoAluno.fromJson(String source) => CursoAluno.fromMap(json.decode(source));
+  factory CursoAluno.fromJson(String source) =>
+      CursoAluno.fromMap(json.decode(source));
 
   @override
   String toString() => 'CursoAluno(aluno: $aluno, curso: $curso)';
@@ -48,10 +46,8 @@ class CursoAluno {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
-    return other is CursoAluno &&
-      other.aluno == aluno &&
-      other.curso == curso;
+
+    return other is CursoAluno && other.aluno == aluno && other.curso == curso;
   }
 
   @override

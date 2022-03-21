@@ -2,30 +2,29 @@ import 'package:mobx/mobx.dart';
 
 import '../../cursos/curso_model.dart';
 
-//usado em  AlunoPageDetails
-class CursoState {
+import 'package:mobx/mobx.dart';
+part 'aluno_details_curso_state.g.dart';
+
+class CursoState = _CursoStateBase with _$CursoState;
+
+abstract class _CursoStateBase with Store {
+  _CursoStateBase(this.curso);
 
   Curso curso;
-  
+
   @observable
-  bool selected;
+  bool selected = false;
 
   @observable
   CursoStateType state = CursoStateType.none;
 
-  @observable 
+  @observable
   bool sucess = false;
 
   @observable
   bool error = false;
-
-  CursoState({required this.curso, this.selected = false});
-
 }
 
-enum CursoStateType {
-  none,
-  loading,
-  success,
-  error
-}
+//usado em  AlunoPageDetails
+
+enum CursoStateType { none, loading, success, error }

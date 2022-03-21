@@ -74,17 +74,52 @@ class _AlunosPageDetailsState extends State<AlunosPageDetails> {
               ),
             )),
             Expanded(
-                flex: 4,
+                flex: 6,
                 child: SelectCursos(
                   store: store,
                   aluno: aluno,
                 )),
             Flexible(
                 child: Container(
-              child: Row(children: [MaterialButton(onPressed: (){
-                store.postAluno(aluno);
-              })],)
-            ))
+                    child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                MaterialButton(
+                    color: Colors.blue,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: 40,
+                      child: Center(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.save),
+                          Text('Salvar'),
+                        ],
+                      )),
+                    ),
+                    onPressed: () {
+                      store.postAluno(aluno);
+                    }),
+                MaterialButton(
+                    color: Colors.red,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: 40,
+                      child: Center(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.delete),
+                          Text('Excluir'),
+                        ],
+                      )),
+                    ),
+                    onPressed: () {
+                      store.deleteAluno(aluno);
+                    }),
+              ],
+            )))
           ],
         ));
   }
@@ -103,22 +138,44 @@ class SelectCursos extends StatefulWidget {
 class _SelectCursosState extends State<SelectCursos> {
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (_) {
-      return ListView.builder(
-        itemCount: widget.store.cursos.length,
-        itemBuilder: (context, index) {
-          final curso = widget.store.cursos[index];
-          return Observer(builder: (_) {
-            return CheckboxListTile(
-              title: Text(curso.curso.descricao),
-              value: widget.store.cursos[index].selected,
-              onChanged: (value) {
-                widget.store.selectCurso(curso, widget.aluno);
-              },
-            );
-          });
-        },
-      );
-    });
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: Observer(builder: (_) {
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Escolha os cursos"),
+              ),
+              Expanded(
+                child: ListView.builder(
+                    itemCount: widget.store.cursos.length,
+                    itemBuilder: (context, index) {
+                      final curso = widget.store.cursos[index];
+                      return Observer(builder: (_) {
+                        print(widget.store.cursos[index].selected);
+                        return CheckboxListTile(
+                          title:
+                              Text(widget.store.cursos[index].curso.descricao),
+                          value: widget.store.cursos[index].selected,
+                          onChanged: (value) {
+                            // widget.store.cursos[index].selected = true;
+
+                            widget.store.selectCurso(curso, widget.aluno);
+                          },
+                        );
+                      });
+                    }),
+              ),
+            ],
+          );
+        }),
+      ),
+    );
   }
 }

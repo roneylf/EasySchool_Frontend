@@ -51,8 +51,32 @@ mixin _$AlunoDetailsStore on _AlunoDetailsStoreBase, Store {
       AsyncAction('_AlunoDetailsStoreBase.selectCurso');
 
   @override
-  Future selectCurso(CursoState curso, Aluno aluno) {
+  Future<dynamic> selectCurso(CursoState curso, Aluno aluno) {
     return _$selectCursoAsyncAction.run(() => super.selectCurso(curso, aluno));
+  }
+
+  final _$postAlunoAsyncAction =
+      AsyncAction('_AlunoDetailsStoreBase.postAluno');
+
+  @override
+  Future<dynamic> postAluno(Aluno aluno) {
+    return _$postAlunoAsyncAction.run(() => super.postAluno(aluno));
+  }
+
+  final _$updateAlunoAsyncAction =
+      AsyncAction('_AlunoDetailsStoreBase.updateAluno');
+
+  @override
+  Future<dynamic> updateAluno(Aluno aluno) {
+    return _$updateAlunoAsyncAction.run(() => super.updateAluno(aluno));
+  }
+
+  final _$deleteAlunoAsyncAction =
+      AsyncAction('_AlunoDetailsStoreBase.deleteAluno');
+
+  @override
+  Future<dynamic> deleteAluno(Aluno aluno) {
+    return _$deleteAlunoAsyncAction.run(() => super.deleteAluno(aluno));
   }
 
   final _$_AlunoDetailsStoreBaseActionController =

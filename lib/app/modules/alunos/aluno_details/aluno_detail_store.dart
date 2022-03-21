@@ -33,7 +33,7 @@ abstract class _AlunoDetailsStoreBase with Store {
       return;
     }
     for (var i = 0; i < cursos_list.length; i++) {
-      cursos.add(CursoState(curso: cursos_list[i], selected: false));
+      cursos.add(CursoState(cursos_list[i]));
     }
     loading = false;
   }
@@ -47,11 +47,10 @@ abstract class _AlunoDetailsStoreBase with Store {
     }
   }
 
+  final curso_aluno_request = CursoAlunoRequest();
   @action
   Future selectCurso(CursoState curso, Aluno aluno) async {
     loading = true;
-
-    final curso_aluno_request = CursoAlunoRequest();
 
     int index = cursos
         .indexWhere((element) => element.curso.codigo == curso.curso.codigo);
@@ -59,7 +58,11 @@ abstract class _AlunoDetailsStoreBase with Store {
 
     cursos[index].selected = !cursos[index].selected;
 
-    if (cursos[index].selected && aluno != null) {
+    if (aluno.codigo == null) {
+      return;
+    }
+
+    if (cursos[index].selected) {
       await curso_aluno_request
           .post(CursoAluno(aluno: aluno, curso: curso.curso).toMap())
           .then((value) => {
@@ -78,6 +81,16 @@ abstract class _AlunoDetailsStoreBase with Store {
   }
 
   @action
+  Future addCurso(CursoState curso, Aluno aluno) async {
+    loading = true;
+    await curso_aluno_request
+        .post(CursoAluno(aluno: aluno, curso: curso.curso).toMap())
+        .then((value) => {cursos.add(curso)})
+        .onError((error, stackTrace) => {});
+    loading = false;
+  }
+
+  @action
   Future postAluno(Aluno aluno) async {
     return aluno_request
         .post(aluno.toMap())
@@ -85,7 +98,7 @@ abstract class _AlunoDetailsStoreBase with Store {
               aluno.codigo = value,
               for (int i = 0; i < cursos.length; i++)
                 {
-                  if (cursos[i].selected) {await selectCurso(cursos[i], aluno)}
+                  if (cursos[i].selected) {await addCurso(cursos[i], aluno)}
                 }
             })
         .catchError((error, stackTrace) => {

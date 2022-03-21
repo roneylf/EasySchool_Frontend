@@ -35,7 +35,7 @@ class CursoAlunoRequest extends Request {
 
   @override
   Future<int> post(Map<String, dynamic> body) async {
-   return await dio.post(path, data: body).then((response) {
+    return await dio.post(path, data: body).then((response) {
       return response.data['codigo'];
     }).catchError((onError) {
       if (kDebugMode) {
@@ -46,9 +46,7 @@ class CursoAlunoRequest extends Request {
 
   @override
   Future<bool> put(Map<String, dynamic> body) async {
-    await dio
-        .put(path + body['codigo'], data: body)
-        .then((response) {
+    await dio.put(path + body['codigo'], data: body).then((response) {
       return true;
     }).catchError((onError) {
       if (kDebugMode) {
@@ -70,8 +68,8 @@ class CursoAlunoRequest extends Request {
     return false;
   }
 
-  Future<bool> deleteWhere (CursoAluno cursoAluno) async {
-      await dio.delete(path , data: cursoAluno.toMap() ).then((response) {
+  Future<bool> deleteWhere(CursoAluno cursoAluno) async {
+    await dio.delete(path, data: cursoAluno.toMap()).then((response) {
       return true;
     }).catchError((onError) {
       if (kDebugMode) {
